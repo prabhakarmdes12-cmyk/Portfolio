@@ -422,6 +422,130 @@
     transform: translateY(-2px);
   }
 
+  /* PROJECTS */
+  #projects {
+    padding: 160px 60px;
+    background: var(--bg2);
+    position: relative;
+    transition: background 0.4s ease;
+  }
+  #projects::before {
+    content: 'WORK';
+    position: absolute;
+    top: 60px; left: 60px;
+    font-family: var(--font-display);
+    font-size: 12rem;
+    font-weight: 900;
+    color: rgba(200,146,58,0.03);
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+  .projects-header {
+    margin-bottom: 80px;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .project-card {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-card:hover {
+    border-color: rgba(200,146,58,0.4);
+    transform: translateY(-4px);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-image {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, rgba(200,146,58,0.1) 0%, rgba(200,146,58,0.03) 100%);
+    overflow: hidden;
+    position: relative;
+  }
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(200,146,58,0.2);
+    letter-spacing: -0.02em;
+  }
+  .project-content {
+    padding: 32px;
+    position: relative;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    background: rgba(200,146,58,0.08);
+    border: 1px solid rgba(200,146,58,0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+  }
+  .project-card:hover .project-title { color: var(--amber); }
+  .project-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--cream-dim);
+    margin-bottom: 20px;
+  }
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s ease;
+  }
+  .project-card:hover .project-link { gap: 12px; }
+
   /* EXPERIENCE */
   #experience {
     padding: 160px 60px;
@@ -1070,7 +1194,7 @@
     .hero-stats { gap: 40px; flex-wrap: wrap; }
     .stat { text-align: left; }
     .stat-num { font-size: 2.5rem; }
-    #about, #experience, #domains, #education, #contact { padding: 80px 24px; }
+    #projects, #about, #experience, #domains, #education, #contact { padding: 80px 24px; }
     #philosophy { padding: 80px 24px; }
     #about { grid-template-columns: 1fr; gap: 60px; }
     #about::before { font-size: 6rem; left: 24px; }
@@ -1081,6 +1205,8 @@
     .exp-item { grid-template-columns: 1fr; gap: 16px; }
     .exp-tags { justify-content: flex-start; }
     .domains-header { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 24px; }
+    #projects::before { font-size: 6rem; left: 24px; }
     .exp-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 60px; }
     .exp-count { font-size: 4rem; }
     #experience::before { font-size: 6rem; right: 24px; }
@@ -1096,7 +1222,8 @@
   @media (max-width: 480px) {
     #hero { padding: 0 20px 40px; }
     .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
-    #about, #experience, #domains, #education, #contact { padding: 60px 20px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 24px; }
+    #projects, #about, #experience, #domains, #education, #contact { padding: 60px 20px; }
     #philosophy { padding: 60px 20px; }
     .hero-stats { gap: 24px; }
     .stat-num { font-size: 2rem; }
@@ -1129,7 +1256,8 @@
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu">
     <a href="#about">About</a>
-    <a href="#experience">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
     <a href="#domains">Domains</a>
     <a href="photography.html">Photography</a>
     <a href="painting.html">Painting</a>
@@ -1138,7 +1266,8 @@
   </div>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#experience">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
     <a href="#domains">Domains</a>
     <a href="photography.html">Photography</a>
     <a href="painting.html">Painting</a>
@@ -1207,6 +1336,103 @@
     <div class="marquee-item"><div class="marquee-dot"></div>Information Architecture</div>
   </div>
 </div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div class="section-label reveal">Selected Work</div>
+    <h2 class="exp-heading reveal reveal-delay-1" style="max-width:none;">
+      UX <em>Case Studies</em>
+    </h2>
+  </div>
+  <div class="projects-grid">
+    <a href="https://cd777225-aaec-4bf3-a73e-35dc04bf1629.filesusr.com/ugd/ed68a9_5de94cdd494449d5bc50f35407d2a346.pdf" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-image">
+        <div class="project-image-placeholder">Orry</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Health App</span>
+          <span class="project-tag">Kids</span>
+        </div>
+        <h3 class="project-title">Orry</h3>
+        <p class="project-desc">Designing a health app for kids poses several challenges—ensuring age-appropriateness and ease of use while maintaining security and compliance. Balancing user-friendliness with regulations to provide a safe platform for children to learn about healthy food choices.</p>
+        <span class="project-link">View Case Study →</span>
+      </div>
+    </a>
+    <a href="https://prabhakardavinci.wixsite.com/uxdesign/copy-of-lxr-guide" target="_blank" rel="noopener" class="project-card reveal reveal-delay-1">
+      <div class="project-image">
+        <div class="project-image-placeholder">LXR</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Digital Marketing</span>
+          <span class="project-tag">Platform Redesign</span>
+        </div>
+        <h3 class="project-title">LXRGuide</h3>
+        <p class="project-desc">Redesigned Ads management platform that identifies gaps in marketing efforts and suggests actionable recommendations. Led design for the LXRGuide Product Team; launched updated interface August 2018. Result: 40 hours of work crunched into 5 minutes a week.</p>
+        <span class="project-link">View Case Study →</span>
+      </div>
+    </a>
+    <a href="https://prabhakardavinci.wixsite.com/uxdesign/copy-of-seo-1" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-image">
+        <div class="project-image-placeholder">SEO</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Product Strategy</span>
+          <span class="project-tag">IA</span>
+          <span class="project-tag">UX Design</span>
+        </div>
+        <h3 class="project-title">LXR SEO</h3>
+        <p class="project-desc">Website's SEO Scanner—measure and improve SEO performance with 62+ parameters. Full project ownership: user personas, card sorting, usability testing, and visual design. +8% free-trial-to-paid conversion, +30% user retention.</p>
+        <span class="project-link">View Case Study →</span>
+      </div>
+    </a>
+    <a href="https://prabhakardavinci.wixsite.com/uxdesign/copy-of-cook-bot" target="_blank" rel="noopener" class="project-card reveal reveal-delay-1">
+      <div class="project-image">
+        <div class="project-image-placeholder">Cook</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Mobile App</span>
+          <span class="project-tag">UX</span>
+        </div>
+        <h3 class="project-title">Cook Bot</h3>
+        <p class="project-desc">Application assistant for cooking and creating complex recipes. Interactive cooking with a simple interface using images from an ingredients repository plus audio and video aid. Personal project—overall UX deliverable.</p>
+        <span class="project-link">View Case Study →</span>
+      </div>
+    </a>
+    <a href="https://prabhakardavinci.wixsite.com/uxdesign/copy-of-insights-1" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-image">
+        <div class="project-image-placeholder">IM</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Platform</span>
+          <span class="project-tag">Enterprise</span>
+        </div>
+        <h3 class="project-title">Incident Management</h3>
+        <p class="project-desc">Incident reporting and management platform—streamlined workflows for tracking, reporting, and resolving incidents across teams.</p>
+        <span class="project-link">View Case Study →</span>
+      </div>
+    </a>
+    <a href="https://prabhakardavinci.wixsite.com/uxdesign" target="_blank" rel="noopener" class="project-card reveal reveal-delay-1">
+      <div class="project-image">
+        <div class="project-image-placeholder">DX</div>
+      </div>
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="project-tag">Workshops</span>
+          <span class="project-tag">UX</span>
+        </div>
+        <h3 class="project-title">Design Workshops</h3>
+        <p class="project-desc">A glimpse into inspiring sessions where creativity meets problem-solving. Facilitating design thinking and collaborative ideation.</p>
+        <span class="project-link">View Portfolio →</span>
+      </div>
+    </a>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -1571,7 +1797,7 @@
     requestAnimationFrame(animCursor);
   }
   animCursor();
-  document.querySelectorAll('a, button, .domain-card, .exp-item, .skill-tag').forEach(el => {
+  document.querySelectorAll('a, button, .domain-card, .exp-item, .skill-tag, .project-card').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '20px';
       cursor.style.height = '20px';

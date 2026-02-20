@@ -79,6 +79,7 @@ Your `.vscode/launch.json` is set for `http://localhost:8080`. Start a local ser
 ├── photography.html  # Photography gallery page
 ├── painting.html     # Painting portfolio page
 ├── theme.js          # Dark/light mode toggle
+├── images/           # Add project screenshots here (see images/README.md)
 └── README.md         # This file
 ```
 
@@ -89,3 +90,4 @@ Your `.vscode/launch.json` is set for `http://localhost:8080`. Start a local ser
 - **Mobile menu** — Hamburger menu on small screens
 - **Custom cursor** — Disabled on touch devices for better UX
 - **Photography & Painting pages** — Dedicated pages for creative work
+- **Selected Projects** — UX case studies from [Wix portfolio](https://prabhakardavinci.wixsite.com/uxdesign): Orry, LXRGuide, LXR SEO, Cook Bot, Incident Management, Design Workshops
