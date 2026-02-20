@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography — Prabhakar Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('portfolio-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root, [data-theme="dark"] {
+    --nav-scroll-bg: rgba(10,10,10,0.95);
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --amber: #c8923a;
+    --amber-light: #e8b060;
+    --cream: #f0ead8;
+    --cream-dim: #b8b0a0;
+    --text: #e8e2d4;
+    --border: rgba(200,146,58,0.2);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
+    --font-body: 'Instrument Sans', sans-serif;
+  }
+  [data-theme="light"] {
+    --nav-scroll-bg: rgba(248,246,241,0.95);
+    --bg: #f8f6f1;
+    --bg2: #efeae2;
+    --amber: #a67c2a;
+    --amber-light: #c8923a;
+    --cream: #2a2520;
+    --cream-dim: #5c5348;
+    --text: #2a2520;
+    --border: rgba(166,124,42,0.25);
+  }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    cursor: none;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .theme-toggle {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--cream-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  .theme-toggle:hover { border-color: var(--amber); color: var(--amber); }
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+  [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+  .cursor { position: fixed; width: 12px; height: 12px; background: var(--amber); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: all 0.15s ease; }
+  .cursor-ring { position: fixed; width: 40px; height: 40px; border: 1px solid var(--amber); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.15s ease; opacity: 0.6; }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--amber); }
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 60px;
+  }
+  nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 60px; right: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--amber); font-style: italic; }
+  .nav-links { display: flex; gap: 48px; align-items: center; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-links a.active { color: var(--amber); }
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber) !important;
+    border: 1px solid var(--amber);
+    padding: 10px 24px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease !important;
+  }
+  .nav-cta:hover { background: var(--amber) !important; color: var(--bg) !important; }
+  .nav-mobile-toggle { display: none; }
+  .nav-hamburger { display: none; }
+  .nav-mobile-menu { display: none; }
+  #page-hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,146,58,0.06) 0%, transparent 70%);
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--amber); }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+  .page-title em { font-style: italic; color: var(--amber); }
+  .page-sub {
+    max-width: 500px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--cream-dim);
+    margin-top: 32px;
+  }
+  #content {
+    padding: 80px 60px 160px;
+    position: relative;
+  }
+  .intro-block {
+    max-width: 640px;
+    margin-bottom: 80px;
+  }
+  .intro-block p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--cream-dim);
+    margin-bottom: 20px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .gallery-item {
+    aspect-ratio: 4/5;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+  .gallery-item:hover {
+    border-color: rgba(200,146,58,0.4);
+    transform: translateY(-4px);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(200,146,58,0.08) 0%, rgba(200,146,58,0.02) 100%);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+  }
+  .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: linear-gradient(transparent, rgba(10,10,10,0.9));
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+  [data-theme="light"] .gallery-caption { background: linear-gradient(transparent, rgba(248,246,241,0.95)); }
+  .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-copy { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--cream-dim); }
+  .footer-love { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--cream-dim); }
+  .footer-love span { color: var(--amber); }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    margin-top: 60px;
+    transition: color 0.3s ease;
+  }
+  .back-link:hover { color: var(--amber); }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; flex-wrap: wrap; }
+    nav::after { left: 24px; right: 24px; }
+    .nav-links { display: none !important; }
+    .nav-mobile-toggle { display: flex; gap: 12px; align-items: center; }
+    .nav-hamburger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; padding: 10px;
+      border: 1px solid var(--border); border-radius: 2px;
+      background: transparent; cursor: pointer; transition: all 0.3s ease;
+    }
+    .nav-hamburger span { display: block; width: 100%; height: 2px; background: var(--cream-dim); transition: all 0.3s ease; }
+    .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .nav-mobile-menu { display: none; width: 100%; padding: 24px 0 0; flex-direction: column; gap: 0; }
+    .nav-mobile-menu.open { display: flex; flex-basis: 100%; order: 3; }
+    .nav-mobile-menu a {
+      font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cream-dim); text-decoration: none;
+      padding: 16px 0; border-bottom: 1px solid var(--border); transition: color 0.3s ease;
+    }
+    .nav-mobile-menu a:hover { color: var(--amber); }
+    .page-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+    #page-hero { padding: 100px 24px 48px; min-height: 60vh; }
+    #content { padding: 48px 24px 80px; }
+    .intro-block { margin-bottom: 48px; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+    .gallery-item { aspect-ratio: 4/5; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 16px 20px; }
+    nav::after { left: 20px; right: 20px; }
+    #page-hero { padding: 90px 20px 40px; }
+    #content { padding: 40px 20px 60px; }
+    .page-title { font-size: clamp(2rem, 12vw, 3rem); }
+  }
+  @media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Prabhakar <span>Kumar</span></a>
+  <div class="nav-mobile-toggle">
+    <button type="button" class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button type="button" class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark/light mode">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Work</a>
+    <a href="index.html#domains">Domains</a>
+    <a href="photography.html" class="active">Photography</a>
+    <a href="painting.html">Painting</a>
+    <a href="index.html#education">Education</a>
+    <a href="index.html#contact" class="nav-cta" style="margin-top:12px;text-align:center;">Let's Talk</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Work</a>
+    <a href="index.html#domains">Domains</a>
+    <a href="photography.html" class="active">Photography</a>
+    <a href="painting.html">Painting</a>
+    <a href="index.html#education">Education</a>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+    <a href="index.html#contact" class="nav-cta">Let's Talk</a>
+  </div>
+</nav>
+
+<section id="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="section-label reveal">Through the Lens</div>
+  <h1 class="page-title reveal reveal-delay-1">Capturing <em>Moments</em><br>That Tell Stories</h1>
+  <p class="page-sub reveal reveal-delay-2">
+    Freelance photographer for aspiring actors, trained at Infosys Bangalore. The lens teaches me how people see the world — indispensable for UX.
+  </p>
+</section>
+
+<section id="content">
+  <div class="intro-block reveal">
+    <p>
+      Photography isn't just a hobby — it's a parallel practice that sharpens my visual intuition. Every frame I compose reinforces principles of balance, focal points, and emotional narrative. When I design interfaces, I'm applying the same discipline: what do we want the user to see first? What story does this layout tell?
+    </p>
+    <p>
+      From portraiture to candid moments, I bring this perspective into every project. Replace the placeholders below with your own work.
+    </p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <div class="gallery-placeholder">Portrait 01</div>
+      <span class="gallery-caption">Portrait Series</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <div class="gallery-placeholder">Portrait 02</div>
+      <span class="gallery-caption">Candid</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <div class="gallery-placeholder">Portrait 03</div>
+      <span class="gallery-caption">Studio</span>
+    </div>
+    <div class="gallery-item reveal">
+      <div class="gallery-placeholder">Scene 01</div>
+      <span class="gallery-caption">Composition</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <div class="gallery-placeholder">Scene 02</div>
+      <span class="gallery-caption">Light & Shadow</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <div class="gallery-placeholder">Scene 03</div>
+      <span class="gallery-caption">Detail</span>
+    </div>
+  </div>
+  <a href="index.html#about" class="back-link reveal">← Back to Home</a>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2025 Prabhakar Kumar</div>
+  <div class="footer-love">Crafted with <span>❤</span> &amp; Figma</div>
+</footer>
+
+<script src="theme.js"></script>
+<script>
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('navMobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', open);
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function anim() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(anim);
+  }
+  anim();
+  document.querySelectorAll('a, button, .gallery-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      cursor.style.background = 'var(--amber-light)';
+      ring.style.width = '60px'; ring.style.height = '60px';
+      ring.style.borderColor = 'var(--amber-light)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      cursor.style.background = 'var(--amber)';
+      ring.style.width = '40px'; ring.style.height = '40px';
+      ring.style.borderColor = 'var(--amber)';
+    });
+  });
+  const nav = document.querySelector('nav');
+  const updateNavBg = () => {
+    nav.style.background = window.scrollY > 80 ? 'var(--nav-scroll-bg)' : 'transparent';
+    nav.style.backdropFilter = window.scrollY > 80 ? 'blur(20px)' : 'none';
+  };
+  window.addEventListener('scroll', updateNavBg);
+  updateNavBg();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
