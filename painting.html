@@ -177,32 +177,6 @@
     color: var(--cream-dim);
     margin-bottom: 20px;
   }
- <div class="paint-grid">
-    <div class="paint-item large reveal">
-  <img src="images/featured-paint.jpg" alt="Description of my featured painting" style="width:100%; height:100%; object-fit:cover;">
-  <span class="paint-caption">Featured Piece</span>
-</div>
-
-    <div class="paint-item reveal reveal-delay-1">
-        <img src="images/paint-01.jpg" alt="Painting Study">
-        <span class="paint-caption">Study</span>
-    </div>
-
-    <div class="paint-item reveal reveal-delay-2">
-        <img src="images/paint-02.jpg" alt="Abstract Composition">
-        <span class="paint-caption">Composition</span>
-    </div>
-
-    <div class="paint-item reveal">
-        <img src="images/paint-03.jpg" alt="Color Study">
-        <span class="paint-caption">Color Study</span>
-    </div>
-
-    <div class="paint-item reveal reveal-delay-1">
-        <img src="images/paint-04.jpg" alt="Abstract Work">
-        <span class="paint-caption">Abstract</span>
-    </div>
-</div>
   .paint-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -232,19 +206,6 @@
     transition: transform 0.5s ease;
   }
   .paint-item:hover img { transform: scale(1.05); }
-  .paint-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(200,146,58,0.06) 0%, rgba(200,146,58,0.02) 100%);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: var(--cream-dim);
-    text-transform: uppercase;
-  }
   .paint-caption {
     position: absolute;
     bottom: 0;
@@ -402,31 +363,37 @@
       Every stroke on canvas teaches me about balance, contrast, and emotional resonance. When I choose a color palette for an app or decide where to place a CTA, I'm drawing from the same intuition that guides my brush. Painting is meditation and practice — it keeps my visual language fresh and intentional.
     </p>
     <p>
-      From abstracts to figurative work, each piece informs how I approach visual hierarchy and emotional design. Replace the placeholders below with your own paintings.
+      From abstracts to figurative work, each piece informs how I approach visual hierarchy and emotional design.
     </p>
   </div>
+
   <div class="paint-grid">
     <div class="paint-item large reveal">
-      <div class="paint-placeholder">Featured Work</div>
+      <img src="images/featured-paint.jpg" alt="Featured Painting">
       <span class="paint-caption">Featured Piece</span>
     </div>
+
     <div class="paint-item reveal reveal-delay-1">
-      <div class="paint-placeholder">Piece 01</div>
+      <img src="images/paint-01.jpg" alt="Painting Study">
       <span class="paint-caption">Study</span>
     </div>
+
     <div class="paint-item reveal reveal-delay-2">
-      <div class="paint-placeholder">Piece 02</div>
+      <img src="images/paint-02.jpg" alt="Composition piece">
       <span class="paint-caption">Composition</span>
     </div>
+
     <div class="paint-item reveal">
-      <div class="paint-placeholder">Piece 03</div>
+      <img src="images/paint-03.jpg" alt="Color study">
       <span class="paint-caption">Color Study</span>
     </div>
+
     <div class="paint-item reveal reveal-delay-1">
-      <div class="paint-placeholder">Piece 04</div>
+      <img src="images/paint-04.jpg" alt="Abstract work">
       <span class="paint-caption">Abstract</span>
     </div>
   </div>
+
   <blockquote class="quote-block reveal">
     "Color and composition aren't just aesthetics — they're the vocabulary of feeling. Every interface I design speaks that language."
   </blockquote>
@@ -498,5 +465,6 @@
 </script>
 </body>
 </html>
+
 
 
